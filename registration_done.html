@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greyscale Webpage</title>
+    <link rel = "icon" href ="note.png"  type = "image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap">
+    <style>
+        body {
+            background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(31,31,31,1) 100%);
+            color: #ffffff;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .text {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .button {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text">
+        Welcome Aboard To MUSICIA
+    </div>
+    <button class="button" onclick="goToSearch()">Explore</button>
+    <script>
+        function goToSearch() {
+            window.location.href = 'searchprototype.html';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="css/registration.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Register</title>
+    <link rel = "icon" href ="note.png"  type = "image/x-icon">
+</head>
+<style>
+    p.error
+    {
+        display: none;
+        background-color: #434242;
+        color: gold;
+    }
+</style>
+<script>
+    function formValidate()
+    {
+        var mail_id = document.getElementById('mail').value;
+        var pswd = document.getElementById('password').value;
+        if (mail_id.indexOf('@')===-1)
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Email ID should have '@'";
+            return false;
+        }
+        var ind = mail_id.indexOf('@');
+        var com = mail_id.indexOf('.');
+        if (ind===0 || ind === (mail_id.length-1))
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Invalid Position for : '@'";
+            return false;
+        }
+        if (com===-1)
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Email ID should have '.' ";
+            return false;
+        }
+        if(com<ind)
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "'.' should be after '@'";
+            return false;
+        }
+        if (com === (mail_id.length-1))
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = " '.' cannot be the last element in the Email ID";
+            return false;
+        }
+        if (mail_id.length < 5) {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Email ID should be at least 5 characters long";
+            return false;
+        }
+
+        if (pswd.length < 8) {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Password should be at least 8 characters long";
+            return false;
+        }
+        if (!(/[a-zA-Z]/.test(pswd) && /\d/.test(pswd))) {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Password should contain both letters and numbers";
+            return false;
+        }
+
+        if (pswd.toLowerCase() === pswd || pswd.toUpperCase() === pswd) {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Password should contain a mix of upper and lower case letters";
+            return false;
+        }
+        if (!(/^[a-zA-Z0-9@.]*$/.test(mail_id))) 
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Email can only contain letters, numbers, '@', and '.'";
+            return false;
+        }
+        if (/(\.{2,})/.test(mail_id))
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Consecutive dots are not allowed in the email";
+            return false;
+        }
+        var domain = mail_id.split('@')[1];
+        if (domain.length < 2 || domain.length > 64) 
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Invalid domain length in the email";
+            return false;
+        }
+
+        var validDomains = ['.com', '.in'];  // Add more valid domain extensions as needed
+        var isValidDomain = validDomains.some(function (domain) 
+        {
+            return mail_id.endsWith(domain);
+        });
+
+        if (!isValidDomain) 
+        {
+            document.getElementById('mail_error').style.display = "block";
+            document.getElementById('mail_error').innerHTML = "Invalid Email Domain";
+            return false;
+        }
+        //redirectToPage('homepage.html');
+    }
+</script>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="/registration_done" method = "POST" onsubmit="return formValidate()">
+                    <h2>Register</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="text" name="mail" id="mail" required>
+                        <label for="">Email</label>
+                        <p id="mail_error"class="error"></p>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" name="password" id="password" required>
+                        <label for="">Password</label>
+                    </div>
+                    <div class="forget">
+                        <label for=""><input type="checkbox"> Remember Me<label>
+                      
+                    </div>
+                    <button type="submit" value="submit">Register</button>
+                    <div class="register">
+                        <p>Already have an account? <a href="login.html">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        function redirectToPage(page) {
+          window.location.href = page;
+      }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

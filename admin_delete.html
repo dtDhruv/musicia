@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Page</title>
+    <link rel="stylesheet" href="css/registration.css">
+    <link rel="icon" href="note.png" type="image/x-icon">
+</head>
+
+<style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    body.admin {
+        height: 100%;
+    }
+
+    #myVideo {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    div.screen {
+        position: relative;
+        max-width: 80%;
+        width: 30%;
+        height: 70%;
+        margin: 10vh auto;
+        background-color: transparent;
+        padding: 10px;
+        /*border: none;*/
+        backdrop-filter: blur(5px);
+        z-index: 1;
+    }
+
+    .formstyle {
+        object-fit: contain;
+        margin-left: 5%;
+        margin-right: 5%;
+        color: white;
+        font-size: 18px;
+    }
+    button.trans
+    {
+        background-color: transparent;
+    }
+    button:hover {
+        background-color: #5bc05a;
+    }
+
+    @media screen and (min-width: 768px) {
+        .formstyle {
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .formstyle {
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+    }
+    a
+    {
+        color: white;
+        text-decoration: none;
+    }
+    b{
+        color:white;
+    }
+    div.rightbox
+    {
+        background-color: #5bc05a;    
+    }
+</style>
+
+<body class="admin">
+    <video autoplay muted loop id="myVideo">
+        <source src="admin_back.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <button class="trans" style="width: 200px;"><a href="homepage.html">To Home</a></button>
+
+    <form action="/get_music_table" method="post">
+        <button type="submit" value="submit" class="trans" style="width: 200px;"><b>Display Music Table</b></button>
+    </form>
+    <form action="/get_user_table" method="post">
+        <button type="submit" value="submit" class="trans" style="width: 200px;"><b>Display User Table</b></button>
+    </form>
+    <button class="trans" style="width: 200px;"><a href="admin_page.html">Click here to Insert</a></button>
+    <br>
+    <button class="trans" style="width: 200px;"><a href="admin_update.html">Click here to Update</a></button>
+
+    <div class="form-box screen" style="margin-bottom: 20px;margin-top: 0px;">
+        <form class="formstyle" action="/delete_row" method="POST" name="admin_form" onsubmit="return checkVal()">
+            <div class="inputbox">
+                Enter Music ID: <input type="text" name="mu_id" id="mu_id">
+            </div>
+            <center>
+                <div class="rightbox" id="error_conditions"></div>
+            </center><br>
+            <center>
+                <button type="submit" value="submit" style="width: 200px;">Delete Row</button>
+            </center>
+        </form>
+    </div>
+    <script>
+        function checkVal()
+        {
+            console.log("Function called!");
+            var my_m_id = parseInt(document.getElementById('mu_id').value);
+            console.log("my_m_id:", my_m_id);
+            if (isNaN(my_m_id))
+            {
+                document.getElementById('error_conditions').innerHTML = "Please Enter a Number";
+                return false;
+            }
+            if (my_m_id <0)
+            {
+                document.getElementById('error_conditions').innerHTML = "Enter Postive Numbers only";
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>
